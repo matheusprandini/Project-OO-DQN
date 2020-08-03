@@ -10,13 +10,13 @@ import os
 
 # Initialize Global Parameters
 DATA_DIR = ""
-NUM_ACTIONS = 4 # number of valid actions (up, down, right,left)
+NUM_ACTIONS = 3 # number of valid actions (up, down, right,left)
 GAMMA = 0.99 # decay rate of past observations
-INITIAL_EPSILON = 0.1 # starting value of epsilon
-FINAL_EPSILON = 0.0001 # final value of epsilon
-MEMORY_SIZE = 50000 # number of previous transitions to remember
+INITIAL_EPSILON = 1 # starting value of epsilon
+FINAL_EPSILON = 0.05 # final value of epsilon
+MEMORY_SIZE = 2000 # number of previous transitions to remember
 NUM_EPOCHS_OBSERVE = 100
-NUM_EPOCHS_TRAIN = 1000
+NUM_EPOCHS_TRAIN = 2000
 NUM_EPOCHS_TEST = 100
 
 BATCH_SIZE = 32
@@ -169,7 +169,7 @@ class DQN:
                     loss += self.model.train_on_batch(X, Y)
         
             # reduce epsilon gradually
-            if epsilon > FINAL_EPSILON:
+            if epsilon > FINAL_EPSILON and e > NUM_EPOCHS_OBSERVE:
                 epsilon -= (INITIAL_EPSILON - FINAL_EPSILON) / NUM_EPOCHS
         
             print("Epoch {:04d}/{:d} | Loss {:.5f} | Win Count: {:d}"

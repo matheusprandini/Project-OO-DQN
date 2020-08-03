@@ -5,8 +5,8 @@ from CatchGame import CatchGame
 ## Train dqn for snake game
 
 dqn = DQN()
-snake_game = SnakeGame()
+#snake_game = SnakeGame()
 catch_game = CatchGame()
 
 #dqn.train_model(catch_game)
-dqn.test_model(catch_game, 'rl-network-screenshot-catch-400')
+dqn.test_model(catch_game, 'rl-network-screenshot')
